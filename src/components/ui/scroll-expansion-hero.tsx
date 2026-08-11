@@ -5,15 +5,23 @@ type ScrollExpansionHeroProps = {
   mediaSrc: string;
   backgroundSrc: string;
   children: ReactNode;
+  expandedContent?: ReactNode;
 };
 
-export function ScrollExpansionHero({ mediaSrc, backgroundSrc, children }: ScrollExpansionHeroProps) {
+export function ScrollExpansionHero({ mediaSrc, backgroundSrc, children, expandedContent }: ScrollExpansionHeroProps) {
   const [progress, setProgress] = useState(0);
   const [expanded, setExpanded] = useState(false);
 
   useEffect(() => {
     const onWheel = (event: WheelEvent) => {
-      if (expanded) return;
+      if (expanded) {
+        if (event.deltaY < 0 && window.scrollY <= 8) {
+          event.preventDefault();
+          setExpanded(false);
+          setProgress((current) => Math.max(0, current + event.deltaY * 0.00135));
+        }
+        return;
+      }
       if (window.scrollY > 4) return;
       event.preventDefault();
       setProgress((current) => {
@@ -44,6 +52,7 @@ export function ScrollExpansionHero({ mediaSrc, backgroundSrc, children }: Scrol
         <motion.div animate={{ opacity: titleOpacity }} transition={{ duration: 0.12 }} className="pointer-events-none absolute inset-0 z-10">
           {children}
         </motion.div>
+        {expandedContent && <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: expanded ? 1 : 0, y: expanded ? 0 : 18 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }} className="absolute bottom-8 left-1/2 z-20 w-[min(88vw,42rem)] -translate-x-1/2 text-center">{expandedContent}</motion.div>}
         {!expanded && <p className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap font-interface text-[.58rem] uppercase tracking-[.18em] text-botanical-accent">Role para revelar</p>}
       </div>
     </section>

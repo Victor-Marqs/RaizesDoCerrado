@@ -21,6 +21,12 @@
   --ease: cubic-bezier(.22,1,.36,1);
 }
 
+/* O acervo só é revelado depois da seleção de uma região no mapa. */
+.catalog-section .search-bar-row,.catalog-section .biome-tabs-container,.catalog-section .specimens-grid{display:none!important}
+.catalog-section .search-bar-row.is-map-selection{display:grid!important}
+.catalog-section .biome-tabs-container.is-map-selection{display:block!important}
+.catalog-section .specimens-grid.is-map-selection{display:grid!important}
+
 *,*::before,*::after{box-sizing:border-box;margin:0;padding:0}
 html{scroll-behavior:smooth;font-size:16px;background:var(--color-bg)}
 body{font-family:var(--font-sans);background:var(--color-bg);color:var(--color-text);line-height:1.55;-webkit-font-smoothing:antialiased;overflow-x:hidden}

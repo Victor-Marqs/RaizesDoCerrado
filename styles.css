@@ -199,5 +199,3 @@ p{color:var(--color-muted)}
   .modal-overlay{padding:0}.modal-dossier-container{max-height:100vh;height:100%;border:0}.dossier-header-grid{grid-template-columns:1fr}.dossier-img{min-height:360px;height:360px}.dossier-meta-padding{padding:42px 22px}.dossier-popular-name{font-size:3.5rem}.dossier-body-content{padding:0 22px 40px}.dossier-sections-grid{grid-template-columns:1fr}.dossier-box{min-height:0;padding:28px 22px}.scanner-modal-body{padding:56px 20px 30px}.scanner-header-text h2{font-size:2.5rem}.technical-viewport{height:270px}.sample-thumbs-grid{grid-template-columns:1fr 1fr}.tech-analysis-result{align-items:flex-start;flex-direction:column}
   .footer-grid{grid-template-columns:1fr;gap:45px}.footer{padding-top:75px}.footer-brand-title{font-size:2.8rem}.footer-ethics-note{margin-top:55px}
 }
-
-@media(prefers-reduced-motion:reduce){*,*::before,*::after{scroll-behavior:auto!important;animation:none!important;transition-duration:.01ms!important}.hero-letter{opacity:1;transform:none}}

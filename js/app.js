@@ -91,7 +91,7 @@ document.addEventListener('DOMContentLoaded', () => {
    ANIMAÇÕES EDITORIAIS — ANIME.JS
    ========================================================================== */
 const prefersReducedMotion = () => window.matchMedia?.('(prefers-reduced-motion: reduce)')?.matches ?? false;
-const motionEnabled = () => Boolean(window.anime?.animate) && !prefersReducedMotion();
+const motionEnabled = () => Boolean(window.anime?.animate);
 
 function runMotion(targets, parameters) {
   if (!motionEnabled() || !targets) return null;
@@ -150,12 +150,6 @@ function initScrollExpansionHero() {
 
   initHeroTextReveal(copy);
 
-  if (prefersReducedMotion()) {
-    progress = 1;
-    render();
-    return;
-  }
-
   window.addEventListener('wheel', event => {
     if (expanded || window.scrollY > 3) return;
     event.preventDefault();
@@ -202,7 +196,7 @@ function initHeroTextReveal(container) {
 
 function initAnimeMotion() {
   if (!motionEnabled()) {
-    document.documentElement.dataset.animeMotion = prefersReducedMotion() ? 'reduced' : 'unavailable';
+    document.documentElement.dataset.animeMotion = 'unavailable';
     return;
   }
   document.documentElement.dataset.animeMotion = 'active';

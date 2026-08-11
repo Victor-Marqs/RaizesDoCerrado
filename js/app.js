@@ -546,6 +546,17 @@ function renderPlants() {
   const counter = document.getElementById('resultsCounter');
   if (!grid) return;
 
+  const selectedRegion = getRegionByCode(state.currentMacroRegion);
+  document.querySelector('.search-bar-row')?.classList.toggle('is-map-selection', Boolean(selectedRegion));
+  document.querySelector('.biome-tabs-container')?.classList.toggle('is-map-selection', Boolean(selectedRegion));
+  grid.classList.toggle('is-map-selection', Boolean(selectedRegion));
+
+  if (!selectedRegion) {
+    if (counter) counter.textContent = 'Selecione uma região do mapa para consultar as espécies.';
+    grid.innerHTML = '';
+    return;
+  }
+
   // Skeleton Loader breve
   grid.innerHTML = Array(4).fill(0).map(() => `
     <div class="skeleton-card">
@@ -561,7 +572,6 @@ function renderPlants() {
       const matchBiome = state.currentBiome === 'Todos' || 
                          plant.region === state.currentBiome || 
                          plant.regionsSecondary?.includes(state.currentBiome);
-      const selectedRegion = getRegionByCode(state.currentMacroRegion);
       const matchMacroRegion = !selectedRegion || plant.macroRegions?.includes(selectedRegion.name);
       
       const q = state.searchQuery;

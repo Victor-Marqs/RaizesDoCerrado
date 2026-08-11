@@ -89,6 +89,7 @@ p{color:var(--color-muted)}
 .objective-desc{font-size:.78rem;line-height:1.65}
 
 .catalog-section{padding:140px 0 150px;background:#080a09;scroll-margin-top:20px}
+.catalog-heading{display:none}.search-bar-row,.biome-tabs-container,.specimens-grid{display:none}.search-bar-row.is-map-selection,.biome-tabs-container.is-map-selection,.specimens-grid.is-map-selection{display:flex}.specimens-grid.is-map-selection{display:grid}.catalog-section .regions-explorer{margin-top:0}.catalog-section .catalog-counter-text{display:block;margin-top:1rem;font-family:var(--font-sans);font-size:.75rem;letter-spacing:.08em;text-transform:uppercase;color:var(--color-ink-muted)}
 .catalog-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:48px;margin-bottom:64px}
 .catalog-heading h2{font-size:clamp(3.6rem,5.8vw,6rem);letter-spacing:-.045em;margin-top:22px}
 .catalog-heading>p{max-width:350px;font-size:.82rem;line-height:1.65;margin-bottom:8px}

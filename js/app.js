@@ -83,6 +83,7 @@ document.addEventListener('DOMContentLoaded', () => {
   initModals();
   initScannerSimulator();
   renderPlants();
+  initScrollExpansionHero();
   initAnimeMotion();
 });
 
@@ -95,6 +96,108 @@ const motionEnabled = () => Boolean(window.anime?.animate) && !prefersReducedMot
 function runMotion(targets, parameters) {
   if (!motionEnabled() || !targets) return null;
   return window.anime.animate(targets, parameters);
+}
+
+function initScrollExpansionHero() {
+  const hero = document.querySelector('.hero');
+  const media = document.querySelector('.hero-expansion-media');
+  const copy = document.querySelector('.hero-expansion-copy');
+  if (!hero || !media || !copy) return;
+
+  let progress = 0;
+  let expanded = false;
+  let touchY = null;
+
+  const render = () => {
+    const mobile = window.innerWidth < 700;
+    const minWidth = mobile ? 248 : 330;
+    const minHeight = mobile ? 340 : 420;
+    const maxWidth = window.innerWidth;
+    const maxHeight = window.innerHeight;
+    const width = minWidth + (maxWidth - minWidth) * progress;
+    const height = minHeight + (maxHeight - minHeight) * progress;
+    const gap = (mobile ? 72 : 102) + progress * (mobile ? 150 : 430);
+
+    hero.style.setProperty('--hero-progress', progress.toFixed(3));
+    hero.style.setProperty('--hero-tilt', `${18 * (1 - progress)}deg`);
+    hero.style.setProperty('--hero-scale', `${1.05 - progress * .05}`);
+    media.style.width = `${width}px`;
+    media.style.height = `${height}px`;
+    media.style.borderRadius = `${30 * (1 - progress)}px`;
+    copy.style.opacity = String(Math.max(0, 1 - progress * 1.1));
+    media.style.borderWidth = `${Math.max(0, 1 - progress)}px`;
+    copy.querySelector('.hero-title-left').style.transform = `translateX(calc(-50% - ${gap}px))`;
+    copy.querySelector('.hero-title-right').style.transform = `translateX(calc(50% + ${gap}px))`;
+
+    if (progress >= 1 && !expanded) {
+      expanded = true;
+      hero.classList.add('is-expanded');
+      runMotion('.hero-content > *', {
+        opacity: [0, 1],
+        translateY: ['18px', '0px'],
+        delay: window.anime?.stagger?.(90, { start: 80 }) || 0,
+        duration: 680,
+        ease: 'out(4)'
+      });
+    }
+  };
+
+  const setProgress = delta => {
+    if (expanded) return;
+    progress = Math.max(0, Math.min(1, progress + delta));
+    render();
+  };
+
+  initHeroTextReveal(copy);
+
+  if (prefersReducedMotion()) {
+    progress = 1;
+    render();
+    return;
+  }
+
+  window.addEventListener('wheel', event => {
+    if (expanded || window.scrollY > 3) return;
+    event.preventDefault();
+    setProgress(event.deltaY * .00135);
+  }, { passive: false });
+
+  window.addEventListener('touchstart', event => {
+    touchY = event.touches[0]?.clientY ?? null;
+  }, { passive: true });
+
+  window.addEventListener('touchmove', event => {
+    if (expanded || window.scrollY > 3 || touchY === null) return;
+    const nextY = event.touches[0]?.clientY ?? touchY;
+    event.preventDefault();
+    setProgress((touchY - nextY) * .0044);
+    touchY = nextY;
+  }, { passive: false });
+
+  window.addEventListener('touchend', () => { touchY = null; }, { passive: true });
+  window.addEventListener('resize', render, { passive: true });
+  render();
+}
+
+function initHeroTextReveal(container) {
+  container.querySelectorAll('.hero-expansion-title').forEach(title => {
+    let index = 0;
+    const fragment = document.createDocumentFragment();
+    [...title.childNodes].forEach(node => {
+      if (node.nodeType !== Node.TEXT_NODE) {
+        fragment.append(node.cloneNode(true));
+        return;
+      }
+      [...node.textContent].forEach(character => {
+        const letter = document.createElement('span');
+        letter.className = 'hero-letter';
+        letter.style.setProperty('--letter-index', index++);
+        letter.textContent = character === ' ' ? '\u00a0' : character;
+        fragment.append(letter);
+      });
+    });
+    title.replaceChildren(fragment);
+  });
 }
 
 function initAnimeMotion() {
@@ -111,20 +214,6 @@ function initAnimeMotion() {
     duration: 560,
     ease: 'out(4)'
   });
-  runMotion('.hero-content > *', {
-    opacity: [0, 1],
-    translateY: ['18px', '0px'],
-    delay: window.anime.stagger(95, { start: 120 }),
-    duration: 760,
-    ease: 'out(4)'
-  });
-  runMotion('.hero-botanical', {
-    opacity: [0.72, 0.98],
-    scale: [1.025, 1],
-    duration: 1300,
-    ease: 'out(3)'
-  });
-
   const revealTargets = [
     '.objectives-intro > .section-number',
     '.objectives-intro > h2',

@@ -2,6 +2,7 @@ import { useEffect, useMemo } from 'react';
 import staticPage from './legacy/static-page.html?raw';
 import { ArchiveMotionSection } from './components/archive-motion-section';
 import { HeroScroll } from './components/hero-scroll';
+import { PrinciplesSection } from './components/principles-section';
 
 type LegacyPage = { header: string; content: string };
 
@@ -34,6 +35,7 @@ export default function App() {
     <>
       <div dangerouslySetInnerHTML={{ __html: legacyPage.header }} />
       <HeroScroll />
+      <PrinciplesSection />
       <ArchiveMotionSection />
       <div dangerouslySetInnerHTML={{ __html: legacyPage.content }} />
     </>

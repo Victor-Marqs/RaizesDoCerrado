@@ -49,6 +49,17 @@ const MACRO_REGIONS = [
   }
 ];
 
+// Curadoria inicial do acervo por macrorregião. Cada clique revela apenas
+// espécies associadas editorialmente àquela região — não toda a área de
+// ocorrência geográfica da planta.
+const REGION_ARCHIVE = {
+  '1': ['guarana'],
+  '2': ['mangaba'],
+  '3': ['arnica-do-campo'],
+  '4': ['espinheira-santa'],
+  '5': ['pequizeiro']
+};
+
 // Fotografias editoriais usadas no acervo. As pranchas originais continuam
 // disponíveis dentro dos dossiês como documentação botânica.
 const darkPhotoMap = {
@@ -360,7 +371,8 @@ function getRegionByCode(code) {
 }
 
 function getRegionPlantCount(regionName) {
-  return plantsData.filter(plant => plant.macroRegions?.includes(regionName)).length;
+  const region = MACRO_REGIONS.find(item => item.name === regionName);
+  return region ? (REGION_ARCHIVE[region.code] || []).length : 0;
 }
 
 function selectMacroRegion(code) {
@@ -474,7 +486,7 @@ function initBiomeFilters() {
 
   const selectedRegion = getRegionByCode(state.currentMacroRegion);
   const regionalPlants = selectedRegion
-    ? plantsData.filter(plant => plant.macroRegions?.includes(selectedRegion.name))
+    ? plantsData.filter(plant => REGION_ARCHIVE[selectedRegion.code]?.includes(plant.id))
     : plantsData;
 
   biomeContainer.innerHTML = BIOMES.map(biome => {
@@ -547,8 +559,8 @@ function renderPlants() {
   if (!grid) return;
 
   const selectedRegion = getRegionByCode(state.currentMacroRegion);
-  document.querySelector('.search-bar-row')?.classList.toggle('is-map-selection', Boolean(selectedRegion));
-  document.querySelector('.biome-tabs-container')?.classList.toggle('is-map-selection', Boolean(selectedRegion));
+  document.querySelector('.search-bar-row')?.classList.remove('is-map-selection');
+  document.querySelector('.biome-tabs-container')?.classList.remove('is-map-selection');
   grid.classList.toggle('is-map-selection', Boolean(selectedRegion));
 
   if (!selectedRegion) {
@@ -568,22 +580,8 @@ function renderPlants() {
   `).join('');
 
   setTimeout(() => {
-    const filtered = plantsData.filter(plant => {
-      const matchBiome = state.currentBiome === 'Todos' || 
-                         plant.region === state.currentBiome || 
-                         plant.regionsSecondary?.includes(state.currentBiome);
-      const matchMacroRegion = !selectedRegion || plant.macroRegions?.includes(selectedRegion.name);
-      
-      const q = state.searchQuery;
-      const matchSearch = !q || 
-        plant.namePopular.toLowerCase().includes(q) || 
-        plant.nameScientific.toLowerCase().includes(q) ||
-        plant.region.toLowerCase().includes(q) ||
-        plant.shortDesc.toLowerCase().includes(q) ||
-        plant.traditionalUse.toLowerCase().includes(q);
-
-      return matchBiome && matchMacroRegion && matchSearch;
-    });
+    const featuredIds = REGION_ARCHIVE[selectedRegion.code] || [];
+    const filtered = plantsData.filter(plant => featuredIds.includes(plant.id));
 
     if (counter) {
       counter.textContent = `Exibindo ${filtered.length} ${filtered.length === 1 ? 'espécime documentado' : 'espécimes documentados'}`;

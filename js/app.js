@@ -53,11 +53,11 @@ const MACRO_REGIONS = [
 // espécies associadas editorialmente àquela região — não toda a área de
 // ocorrência geográfica da planta.
 const REGION_ARCHIVE = {
-  '1': ['guarana'],
-  '2': ['mangaba'],
-  '3': ['arnica-do-campo'],
-  '4': ['espinheira-santa'],
-  '5': ['pequizeiro']
+  '1': ['guarana', 'copaiba', 'jatoba'],
+  '2': ['mangaba', 'carqueja', 'cagaita'],
+  '3': ['arnica-do-campo', 'barbatimao', 'ipe-roxo'],
+  '4': ['espinheira-santa', 'carqueja', 'ipe-roxo'],
+  '5': ['pequizeiro', 'barbatimao', 'cagaita', 'jatoba', 'sucupira-do-cerrado']
 };
 
 // Fotografias editoriais usadas no acervo. As pranchas originais continuam

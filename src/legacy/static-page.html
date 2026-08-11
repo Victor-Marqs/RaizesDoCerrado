@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Raízes do Cerrado | Acervo Botânico e Saberes Tradicionais</title>
+  <meta name="description" content="Plataforma de pesquisa etnobotânica e documentação de plantas medicinais do Cerrado e biomas brasileiros para a Feira de Ciências." />
+
+  <!-- Fontes Google Editoriais -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400..700;1,9..144,400..700&family=Plus+Jakarta+Sans:ital,wght@0,300..700;1,300..700&display=swap" rel="stylesheet">
+
+  <!-- Estilos da Aplicação -->
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <header class="navbar">
+    <div class="container navbar-container">
+      <a href="#" class="brand-logo" aria-label="Página inicial Raízes do Cerrado">
+        <svg class="brand-svg-icon" viewBox="0 0 32 32" fill="none" aria-hidden="true">
+          <circle cx="16" cy="16" r="14.5" stroke="currentColor" stroke-width="1" />
+          <path d="M16 25V14M16 17C12 17 9.5 14.5 9 10.5c4 .2 7 2.5 7 6.5Zm0-3c3.8 0 6.4-2.3 7-6-3.9.1-6.8 2.2-7 6Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" />
+        </svg>
+        <span class="brand-title">Raízes do Cerrado</span>
+      </a>
+
+      <nav aria-label="Navegação Principal">
+        <ul class="nav-links" id="navLinks">
+          <li><a href="#inicio" class="nav-link active">Início</a></li>
+          <li><a href="#objetivos" class="nav-link">Princípios</a></li>
+          <li><a href="#catalogo" class="nav-link">Acervo</a></li>
+          <li><a href="#escanear" class="nav-link" id="openScannerBtn">Identificar</a></li>
+        </ul>
+      </nav>
+
+      <div style="display: flex; align-items: center; gap: 1rem;">
+        <button class="btn btn-light" id="openScannerBtnHero">Abrir identificação</button>
+
+        <button class="mobile-toggle" id="mobileToggle" aria-label="Abrir menu de navegação" aria-expanded="false">
+          <span></span><span></span>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main id="inicio">
+    <section class="hero" id="heroSection">
+      <img src="assets/hero-dark.png" alt="Composição de espécies medicinais do Cerrado" class="hero-botanical" />
+      <div class="hero-expansion-media" aria-hidden="true">
+        <img src="assets/hero-dark.png" alt="" class="hero-media-image" />
+      </div>
+      <div class="hero-expansion-copy" aria-label="Plantas que guardam a memória do Brasil">
+        <h1 class="hero-expansion-title hero-title-left">Plantas que<br />guardam</h1>
+        <h1 class="hero-expansion-title hero-title-right">a memória<br />do Brasil.</h1>
+      </div>
+      <div class="hero-scroll-cue" aria-hidden="true">
+        <span class="hero-scroll-line"></span>
+        <span>Role para revelar</span>
+      </div>
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <p class="hero-index">Acervo etnobotânico brasileiro · 2026</p>
+          <h1 class="hero-title">Plantas que guardam a <em>memória do Brasil.</em></h1>
+          <p class="hero-subtitle">
+            Um arquivo educativo sobre as plantas medicinais do Cerrado e do Brasil, conectando biodiversidade, saberes tradicionais e ciência responsável.
+          </p>
+
+          <div class="hero-actions">
+            <a href="#catalogo" class="btn btn-primary">Explorar o acervo <span aria-hidden="true">↗</span></a>
+            <button class="btn btn-link" onclick="document.getElementById('openScannerBtnHero').click()">Identificar espécie <span aria-hidden="true">→</span></button>
+          </div>
+        </div>
+
+        <div class="hero-caption" aria-hidden="true">
+          <span>01 / 05</span>
+          <p><i>Hymenaea courbaril</i><br />Jatobá · Fabaceae</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="objectives-section" id="objetivos">
+      <div class="container objectives-layout">
+        <div class="objectives-intro">
+          <p class="section-number">01 · Princípios</p>
+          <h2>Conhecimento vivo,<br /><em>preservação necessária.</em></h2>
+          <p>O Cerrado não é um inventário estático. Cada espécie carrega relações entre território, memória e formas de cuidado.</p>
+        </div>
+
+        <div class="objectives-list">
+          <article class="objective-block">
+            <span class="objective-num">01</span>
+            <h3 class="objective-title">Biodiversidade</h3>
+            <p class="objective-desc">Reconhecer cada espécie como parte de uma teia viva e interdependente.</p>
+          </article>
+          <article class="objective-block">
+            <span class="objective-num">02</span>
+            <h3 class="objective-title">Saberes Tradicionais</h3>
+            <p class="objective-desc">Aprender com comunidades guardiãs e respeitar a origem dos conhecimentos.</p>
+          </article>
+          <article class="objective-block">
+            <span class="objective-num">03</span>
+            <h3 class="objective-title">Ciência Responsável</h3>
+            <p class="objective-desc">Investigar com rigor, transparência e compromisso com a saúde coletiva.</p>
+          </article>
+          <article class="objective-block">
+            <span class="objective-num">04</span>
+            <h3 class="objective-title">Conservação</h3>
+            <p class="objective-desc">Proteger habitats, espécies e culturas para o presente e para o futuro.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <section class="catalog-section" id="catalogo">
+      <div class="container">
+        <div class="catalog-heading">
+          <div>
+            <p class="section-number">02 · Coleção</p>
+            <h2>Acervo Botânico</h2>
+          </div>
+          <p>Espécies medicinais documentadas em diferentes biomas brasileiros.</p>
+        </div>
+
+        <div class="regions-explorer" id="regionsExplorer">
+          <div class="brazil-map-wrap">
+            <svg id="brazilMap" class="brazil-map" viewBox="0 0 620 570" preserveAspectRatio="xMidYMid meet" role="img" aria-labelledby="brazilMapTitle brazilMapDesc">
+              <title id="brazilMapTitle">Mapa interativo das regiões do Brasil</title>
+              <desc id="brazilMapDesc">Selecione uma das cinco regiões brasileiras para filtrar as plantas do acervo.</desc>
+              <g class="map-regions-layer">
+                <path class="region-shape" data-code="1" role="button" tabindex="0" d="M206.75,270.63L210.64,271.20L214.48,275.88L228.73,278.01L240.70,260.62L236.43,250.86L238.70,248.82L238.16,244.94L217.91,243.18L217.49,215.04L257.90,215.04L261.83,196.48L268.83,214.50L280.68,222.36L363.63,228.45L357.52,247.39L359.95,267.31L360.94,264.59L364.70,261.32L364.03,263.48L362.52,266.42L367.70,268.78L374.65,272.60L376.33,267.60L381.06,266.57L384.85,270.69L384.79,273.13L390.41,271.06L396.38,275.12L397.81,270.60L400.07,272.47L412.61,266.81L413.30,268.98L416.54,268.04L413.77,268.51L415.44,262.71L412.99,256.86L413.65,253.83L413.34,251.48L416.13,251.40L416.95,251.39L410.87,246.78L421.55,232.50L412.26,231.49L409.85,222.93L404.63,217.64L412.00,205.70L410.16,203.39L407.61,204.13L404.93,205.52L396.32,195.05L400.22,182.25L398.95,174.16L393.06,169.25L382.54,170.66L396.37,161.13L400.66,154.70L403.98,151.52L416.65,117.30L415.32,113.23L413.65,114.97L409.80,114.30L401.75,110.17L386.99,113.49L385.74,111.49L386.74,104.75L374.47,104.29L374.28,101.03L370.39,99.89L372.01,96.47L364.36,97.45L367.54,80.11L364.48,78.53L361.07,78.61L357.72,74.25L350.87,48.43L345.45,43.82L345.21,49.67L329.15,73.67L309.44,73.40L303.83,70.52L302.78,68.59L290.16,69.23L287.53,72.68L290.56,77.54L289.34,78.27L275.34,75.76L263.53,82.49L259.51,81.65L257.04,83.01L257.20,85.52L252.07,86.03L245.41,81.87L241.84,79.23L241.27,76.10L238.01,67.35L239.49,55.98L243.95,51.33L241.60,48.28L241.25,44.91L235.78,43.70L237.52,41.28L238.22,36.53L235.12,34.00L228.89,34.55L229.46,38.98L225.02,43.73L202.65,49.85L202.74,52.88L199.44,55.38L196.62,50.99L186.83,52.06L184.18,48.71L179.18,49.06L175.96,48.12L184.02,56.93L186.90,70.01L194.68,71.18L194.47,73.37L188.58,76.51L185.59,76.99L185.55,80.27L167.82,92.95L165.99,88.85L161.11,91.41L156.58,92.36L149.63,86.00L146.66,86.82L142.78,72.96L135.68,78.28L133.11,76.29L132.91,79.55L111.17,79.86L111.16,87.96L117.92,87.83L120.25,90.46L120.57,93.54L108.59,94.60L108.59,100.95L108.45,104.23L116.63,114.70L109.82,156.76L99.42,155.34L72.04,168.24L71.08,174.59L67.37,180.89L69.19,184.31L67.85,186.46L62.32,188.84L60.28,193.34L61.60,195.70L57.94,199.18L71.36,218.52L67.86,222.93L74.20,222.93L79.08,224.18L81.49,227.88L81.13,230.50L91.47,230.50L95.32,228.28L101.86,223.19L101.20,243.36L116.61,242.42L125.29,243.60L125.71,245.24L152.59,229.18L167.82,226.24L168.85,245.26L173.15,256.20L181.16,261.98L198.09,264.41L200.64,267.28L206.75,270.63Z" />
+                <path class="region-shape" data-code="2" role="button" tabindex="0" fill-rule="evenodd" d="M391.93,163.31L382.54,170.66L393.06,169.25L398.95,174.16L400.22,182.25L396.32,195.05L404.93,205.52L407.61,204.13L410.16,203.39L412.00,205.70L404.63,217.64L409.85,222.93L412.26,231.49L421.55,232.50L410.79,248.14L416.95,251.39L416.13,251.40L413.34,251.48L413.65,253.83L412.99,256.86L415.44,262.71L413.77,268.51L416.54,268.04L414.15,269.92L414.23,273.17L417.11,272.90L415.07,282.59L417.22,284.95L419.18,286.53L418.35,296.81L439.91,285.22L443.14,285.62L446.51,286.33L446.06,286.95L445.25,289.20L449.76,292.46L450.32,292.13L454.34,290.34L466.04,296.44L472.00,296.12L478.07,304.39L492.16,305.17L493.55,306.50L496.29,307.70L496.25,311.35L487.41,325.15L499.46,337.77L506.29,329.38L509.10,271.85L520.53,263.91L533.34,242.81L555.16,220.60L560.03,209.48L562.02,195.04L554.60,169.64L532.01,165.49L495.93,138.71L476.71,139.22L451.72,131.97L441.81,137.45L443.05,133.56L440.88,133.66L435.20,140.60L439.12,131.94L437.77,129.43L435.43,131.38L435.00,131.17L435.81,124.52L426.69,122.38L426.89,118.98L424.74,120.87L418.06,115.38L403.98,151.52L391.93,163.31ZM437.53,136.91L436.18,138.05L435.51,140.19L437.56,139.89L437.53,136.91Z" />
+                <path class="region-shape" data-code="3" role="button" tabindex="0" fill-rule="evenodd" d="M396.38,338.01L380.45,337.37L374.59,341.60L363.05,342.23L335.75,386.37L326.57,392.90L339.05,391.68L356.28,397.14L365.84,396.55L371.32,401.39L376.71,419.65L385.33,419.97L385.10,424.58L389.17,423.39L391.02,427.47L406.44,413.88L420.02,407.52L425.76,408.16L437.02,398.11L452.92,397.96L456.09,393.81L456.41,397.46L468.98,396.90L469.72,392.13L480.60,386.13L485.43,370.30L499.19,350.22L499.46,337.77L487.41,325.15L496.29,307.70L486.18,303.42L478.07,304.39L472.00,296.12L466.04,296.44L454.34,290.34L450.32,292.13L449.76,292.46L443.14,285.62L439.91,285.22L438.42,285.59L421.34,296.38L411.51,291.02L410.78,292.45L411.52,295.49L411.22,295.56L406.09,295.57L407.62,306.03L401.13,308.16L399.28,313.67L402.22,316.97L403.48,320.29L398.22,326.44L401.09,327.56L400.35,331.26L401.48,333.96L396.38,338.01Z" />
+                <path class="region-shape" data-code="4" role="button" tabindex="0" fill-rule="evenodd" d="M377.72,419.40L371.57,408.56L371.32,401.39L365.84,396.55L356.28,397.14L339.05,391.68L322.64,395.37L311.37,411.51L307.09,429.30L316.99,432.38L319.28,448.49L292.27,465.20L293.28,467.45L268.81,490.13L280.86,490.42L285.59,494.68L289.02,497.94L289.18,501.75L294.75,498.55L325.65,522.04L328.33,519.87L332.78,515.44L332.80,521.77L330.08,525.34L326.33,523.78L325.68,526.47L321.89,529.72L321.20,535.30L322.49,536.00L330.80,530.07L335.35,521.65L339.54,515.64L337.91,510.85L346.74,502.18L349.78,488.53L352.94,492.87L358.54,490.38L359.54,491.08L350.60,506.58L339.80,515.41L355.69,503.14L369.05,480.67L383.17,466.49L387.49,455.02L385.48,454.48L384.60,453.30L384.60,436.06L391.02,427.47L389.17,423.39L385.10,424.58L385.33,419.97L377.72,419.40Z" />
+                <path class="region-shape" data-code="5" role="button" tabindex="0" fill-rule="evenodd" d="M335.75,386.37L363.05,342.23L374.59,341.60L380.45,337.37L392.84,339.86L401.48,333.96L400.35,331.26L401.09,327.56L398.22,326.44L403.48,320.29L402.22,316.97L399.28,313.67L401.13,308.16L407.62,306.03L406.09,295.57L411.22,295.56L411.52,295.49L410.78,292.45L411.51,291.02L415.71,294.18L417.48,293.23L419.18,286.53L417.22,284.95L415.07,282.59L417.11,272.90L414.23,273.17L414.15,269.92L416.54,268.04L413.30,268.98L412.61,266.81L400.07,272.47L397.81,270.60L396.38,275.12L390.41,271.06L384.79,273.13L384.85,270.69L381.06,266.57L376.33,267.60L374.65,272.60L367.70,268.78L362.52,266.42L364.03,263.48L364.70,261.32L360.94,264.59L359.95,267.31L357.52,247.39L363.63,228.45L280.68,222.36L268.83,214.50L261.83,196.48L257.90,215.04L217.49,215.04L217.91,243.18L238.16,244.94L238.70,248.82L236.43,250.86L240.70,260.62L228.73,278.01L231.77,279.31L232.93,281.87L234.70,296.08L230.45,296.08L234.78,300.94L235.62,311.13L259.44,311.12L257.46,319.75L258.46,322.93L263.64,327.20L266.78,327.83L269.27,336.53L266.38,346.75L261.90,356.07L265.40,358.80L261.42,361.30L265.73,371.21L265.07,380.83L263.65,386.04L278.46,388.77L284.27,385.86L284.88,387.23L291.34,388.59L296.45,409.56L298.82,410.52L306.26,408.45L309.57,409.74L311.37,411.51L319.77,397.81L335.75,386.37Z" />
+              </g>
+              <g class="states-layer" aria-hidden="true">
+                <path class="state-boundaries" data-region-code="1" d="M206.75,270.63L228.73,278.01L240.70,260.62L238.16,244.94L217.91,243.18L215.81,213.61L191.26,204.46L184.57,216.92L150.23,228.15L168.93,226.90L173.15,256.20L206.75,270.63ZM146.05,226.33L108.48,202.77L58.15,196.53L70.66,216.60L67.86,222.93L79.08,224.18L81.14,230.50L102.69,223.06L101.20,243.36L127.94,244.80L152.59,229.18L150.23,228.15L146.05,226.33ZM261.69,196.31L258.09,186.96L288.05,127.91L280.59,130.30L259.52,116.60L252.07,98.44L237.37,98.44L233.85,111.07L222.12,108.26L218.88,122.15L213.45,119.78L205.56,111.60L209.70,105.98L203.07,76.95L194.47,73.37L166.57,93.48L165.99,88.85L156.58,92.36L146.66,86.82L142.78,72.96L132.91,79.55L111.17,79.86L111.16,87.96L120.57,93.54L108.59,94.60L116.93,116.55L109.83,156.76L99.42,155.34L72.04,168.24L69.19,184.31L60.28,193.34L108.48,202.77L150.23,228.15L184.57,216.92L191.26,204.46L200.97,204.45L212.25,215.99L257.90,215.04L261.69,196.31ZM184.02,56.93L185.60,69.61L203.07,76.95L209.70,105.98L205.56,111.60L213.45,119.78L218.88,122.15L222.12,108.26L233.85,111.07L237.37,98.44L252.07,98.44L252.07,86.03L251.71,84.87L241.84,79.23L238.01,67.35L243.95,51.33L235.78,43.70L236.12,34.30L199.44,55.38L176.35,46.68L184.02,56.93ZM389.75,165.02L409.29,141.64L415.32,113.22L393.32,109.12L386.99,113.48L386.74,104.75L374.47,104.29L363.61,92.87L339.36,117.46L322.34,85.95L305.47,78.98L302.78,68.59L290.16,69.23L289.34,78.27L272.54,76.13L252.07,86.03L258.07,115.06L280.59,130.30L288.05,127.91L257.39,189.08L268.83,214.50L279.62,222.86L363.63,228.45L376.55,207.39L376.69,190.94L387.42,183.47L390.48,173.92L382.54,170.66L389.75,165.02ZM357.72,74.25L345.45,43.82L329.15,73.67L303.83,70.52L305.47,78.98L322.34,85.95L339.36,117.46L367.94,88.79L367.54,80.11L357.72,74.25ZM399.59,184.47L397.91,172.12L382.54,170.66L390.48,173.92L376.69,190.94L375.74,209.65L358.76,238.99L358.51,266.78L364.70,261.32L362.52,266.41L374.65,272.60L381.06,266.57L396.38,275.12L416.54,268.04L416.95,251.39L410.87,246.78L421.86,233.82L413.81,232.85L404.24,218.45L412.00,205.70L397.51,197.56L399.59,184.47Z" />
+                <path class="state-boundaries" data-region-code="2" d="M391.93,163.31L382.54,170.66L397.91,172.12L395.54,193.99L404.93,205.52L411.54,204.42L404.24,218.45L418.68,233.82L424.99,200.52L457.68,187.37L456.76,156.13L471.94,136.96L447.32,131.31L435.20,140.60L435.54,122.63L418.06,115.38L403.98,151.52L391.93,163.31ZM485.36,207.90L490.42,189.36L479.11,164.49L478.83,140.05L471.69,137.31L456.76,156.13L457.68,187.37L424.99,200.52L417.83,233.72L423.09,231.89L431.57,242.32L441.59,238.77L446.53,223.45L470.56,221.20L485.36,207.90ZM490.40,138.02L478.17,139.42L479.11,164.49L488.45,195.99L508.49,202.78L513.58,182.80L530.54,163.99L490.40,138.02ZM540.17,184.00L559.93,185.30L553.22,168.18L525.55,165.22L513.58,182.80L531.55,179.65L527.55,188.17L538.23,190.97L540.17,184.00ZM526.43,198.19L533.61,197.09L529.28,204.10L534.37,208.61L561.66,198.96L559.93,185.30L542.23,182.92L538.23,190.97L527.55,188.17L531.55,179.65L513.68,183.61L511.72,199.90L526.43,198.19ZM477.71,213.87L487.17,223.84L503.46,211.81L517.87,221.87L524.07,215.65L538.62,221.90L557.56,216.52L561.66,198.96L534.37,208.61L530.43,195.42L506.86,202.93L488.45,195.99L487.42,206.10L477.71,213.87ZM520.77,219.64L518.28,222.99L541.56,236.89L557.56,216.52L534.60,222.49L524.07,215.65L520.77,219.64ZM534.84,232.10L520.14,225.19L524.23,234.85L517.86,240.79L523.50,250.07L541.56,236.89L534.84,232.10ZM503.46,211.81L487.17,223.84L480.86,213.82L459.55,225.60L449.63,221.60L442.65,238.08L431.57,242.32L423.09,231.89L410.79,248.14L416.95,251.39L417.00,298.24L444.11,285.49L449.76,292.46L472.00,296.12L478.07,304.39L492.16,305.17L497.03,309.16L487.41,325.15L499.46,337.77L509.95,305.76L509.10,271.84L529.40,249.05L518.22,242.48L524.23,234.85L516.76,217.50L503.46,211.81Z" />
+                <path class="state-boundaries" data-region-code="3" d="M396.38,338.01L363.05,342.23L353.65,360.26L376.17,358.77L380.85,364.78L398.82,358.77L404.97,377.46L411.44,378.32L413.55,396.54L454.76,386.24L466.03,381.22L471.26,363.96L482.68,352.80L480.28,337.39L492.33,333.18L487.74,322.49L497.03,309.16L449.76,292.46L444.11,285.49L417.00,298.24L411.51,291.02L399.28,313.67L403.48,320.29L396.38,338.01ZM478.83,358.42L471.07,369.02L482.82,375.90L497.62,354.65L499.46,337.77L483.58,333.25L478.83,358.42ZM435.50,396.66L434.40,402.49L456.09,393.81L468.98,396.90L482.27,385.17L482.82,375.90L471.07,369.02L466.03,381.22L433.38,389.96L441.59,393.56L435.50,396.66ZM409.10,382.81L398.82,358.77L380.85,364.78L360.68,356.41L326.57,392.90L365.84,396.55L375.38,419.17L384.52,419.24L391.02,427.47L441.59,393.56L433.31,390.11L413.55,396.54L409.10,382.81Z" />
+                <path class="state-boundaries" data-region-code="4" d="M377.72,419.40L365.84,396.55L328.89,392.17L315.57,403.47L307.09,429.29L319.70,439.59L348.36,445.59L359.19,436.39L384.60,436.06L391.02,427.47L377.72,419.40ZM335.10,442.00L319.70,439.59L317.15,451.40L337.43,452.53L370.04,468.77L366.00,479.53L382.65,468.59L387.49,455.02L384.60,436.06L359.19,436.39L348.36,445.59L335.10,442.00ZM315.73,512.98L325.65,522.03L332.78,515.44L323.16,536.00L347.97,501.82L349.78,488.53L359.03,494.13L339.80,515.40L362.22,494.27L370.04,468.77L337.43,452.53L315.74,451.18L292.27,465.20L268.81,490.13L278.38,488.97L289.18,501.75L294.75,498.55L315.73,512.98Z" />
+                <path class="state-boundaries" data-region-code="5" d="M322.73,333.33L315.68,332.35L319.17,323.83L311.17,329.08L288.76,322.77L270.70,331.83L266.38,328.76L270.60,336.43L261.90,356.07L263.65,386.04L291.34,388.59L297.01,410.30L312.88,410.62L353.64,360.40L352.47,350.25L322.73,333.33ZM285.82,222.79L268.83,214.50L261.83,196.48L257.90,215.04L217.49,215.04L217.91,243.18L238.92,247.72L240.70,260.62L228.73,278.01L235.62,311.13L259.44,311.12L258.46,322.93L270.70,331.83L288.76,322.77L300.43,328.93L319.17,323.83L315.68,332.35L326.99,333.87L332.03,311.58L352.54,293.82L363.63,228.45L285.82,222.79ZM389.23,303.32L407.62,306.03L406.09,295.57L417.48,293.22L419.18,286.53L416.54,268.04L396.38,275.12L381.06,266.57L374.65,272.60L362.59,262.57L352.54,293.82L325.13,324.38L328.37,340.51L355.90,352.39L363.05,342.23L395.22,338.81L403.48,320.29L401.15,308.34L388.68,308.33L389.23,303.32ZM392.05,308.34L401.15,308.34L400.99,302.38L389.68,301.29L392.05,308.34Z" />
+              </g>
+            </svg>
+            <div class="map-tooltip" id="mapTooltip" role="tooltip" aria-hidden="true"></div>
+          </div>
+
+        </div>
+
+        <div class="search-bar-row">
+          <div class="search-field-box">
+            <svg class="search-field-icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+              <circle cx="11" cy="11" r="8" />
+              <path d="m21 21-4.3-4.3" />
+            </svg>
+            <input type="text" class="search-input-editorial" id="searchInput" placeholder="Buscar por nome popular ou científico" aria-label="Campo de pesquisa do catálogo" />
+            <button class="search-clear-btn" id="searchClearBtn" aria-label="Limpar busca">✕</button>
+          </div>
+          <span class="catalog-counter-text" id="resultsCounter">Carregando catálogo...</span>
+        </div>
+
+        <div class="biome-tabs-container">
+          <div class="biome-tabs-flex" id="biomeFilters"></div>
+        </div>
+
+        <div class="specimens-grid" id="plantsGrid">
+        </div>
+      </div>
+    </section>
+
+    <section class="archive-cta" aria-label="Chamada para explorar o acervo">
+      <div class="archive-cta-image"></div>
+      <div class="archive-cta-content">
+        <svg viewBox="0 0 32 32" fill="none" aria-hidden="true"><path d="M16 27V14M16 18C11.5 18 8.5 15 8 10.5c4.5.2 8 2.7 8 7.5Zm0-4c4.2 0 7.2-2.6 8-7-4.4.1-7.7 2.5-8 7Z" stroke="currentColor" stroke-width="1.2" stroke-linecap="round" stroke-linejoin="round" /></svg>
+        <h2>Nunca apenas uma planta.</h2>
+        <p>Cada espécie é território, cultura, ciência e memória — uma arquitetura viva de relações.</p>
+        <a href="#catalogo" class="btn btn-primary">Conhecer o acervo <span aria-hidden="true">↗</span></a>
+      </div>
+    </section>
+  </main>
+
+  <!-- ==========================================================================
+       MODAL DE DETALHES DA PLANTA (DOSSIÊ BOTÂNICO)
+       ========================================================================== -->
+  <div class="modal-overlay" id="plantModal" role="dialog" aria-modal="true" aria-labelledby="dossierPopularName">
+    <div class="modal-dossier-container">
+      <button class="modal-close-btn" id="closeModalBtn" aria-label="Fechar dossiê do espécime">✕</button>
+      <div id="plantModalBody">
+        <!-- Preenchido dinamicamente pelo JS -->
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       MODAL DE SIMULAÇÃO DE IDENTIFICAÇÃO TAXONÔMICA
+       ========================================================================== -->
+  <div class="modal-overlay" id="scannerModal" role="dialog" aria-modal="true" aria-labelledby="scannerModalTitle">
+    <div class="modal-dossier-container" style="max-width: 680px;">
+      <button class="modal-close-btn" id="closeScannerBtn" aria-label="Fechar simulador">✕</button>
+
+      <div class="scanner-modal-body">
+        <div class="scanner-header-text">
+          <span class="specimen-header-tag">Ferramenta Pedagógica</span>
+          <h2 id="scannerModalTitle">Identificação Taxonômica por Imagem</h2>
+          <p style="font-size:0.88rem;color:var(--color-ink-muted)">
+            Selecione uma amostra botânica abaixo para simular a análise taxonômica computacional.
+          </p>
+        </div>
+
+        <!-- Viewport Técnico com Miras de Precisão -->
+        <div class="technical-viewport" id="scannerPreviewArea">
+          <img src="assets/arnica-dark.png" class="technical-viewport-img" alt="Amostra de Arnica do Campo" />
+          <div class="crosshair-overlay">
+            <div class="crosshair-line-h"></div>
+            <div class="crosshair-line-v"></div>
+          </div>
+        </div>
+
+        <!-- Botões das Amostras Botânicas -->
+        <div class="sample-buttons-row">
+          <p class="sample-buttons-label">Amostras da Coleção (Selecione para testar):</p>
+          <div class="sample-thumbs-grid">
+            <button class="sample-btn active" data-plant-id="arnica-do-campo" data-img-src="assets/arnica-dark.png">Amostra A: Arnica</button>
+            <button class="sample-btn" data-plant-id="barbatimao" data-img-src="assets/barbatimao-dark.png">Amostra B: Barbatimão</button>
+            <button class="sample-btn" data-plant-id="cagaita" data-img-src="assets/cagaita-dark.png">Amostra C: Cagaita</button>
+            <button class="sample-btn" data-plant-id="carqueja" data-img-src="assets/carqueja-dark.png">Amostra D: Carqueja</button>
+            <button class="sample-btn" data-plant-id="jatoba" data-img-src="assets/jatoba-dark.png">Amostra E: Jatobá</button>
+          </div>
+        </div>
+
+        <div style="text-align: center;">
+          <button class="btn btn-primary" id="startScanBtn" style="padding: 0.85rem 2rem;">
+            Iniciar Análise Taxonômica
+          </button>
+        </div>
+
+        <!-- Resultado Técnico da Análise -->
+        <div class="tech-analysis-result" id="scanResultCard">
+          <!-- Preenchido via JS -->
+        </div>
+
+        <!-- Diretriz de Uso da Tecnologia -->
+        <div class="tech-disclaimer-box">
+          <strong style="color:var(--color-ink-dark)">Nota Científica:</strong> As ferramentas de auxílio de visão computacional destinam-se exclusivamente ao suporte educativo e à triagem taxonômica preliminar. A confirmação botânica e o uso medicinal exigem orientação de profissionais habilitados.
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ==========================================================================
+       RODAPÉ EDITORIAL INSTITUCIONAL
+       ========================================================================== -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div>
+          <h3 class="footer-brand-title">Raízes do Cerrado</h3>
+          <p class="footer-brand-desc">
+            Projeto de curadoria etnobotânica para a Feira de Ciências, focado na preservação da biodiversidade, documentação de saberes tradicionais e divulgação científica.
+          </p>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Biomas Brasileiros</h4>
+          <ul class="footer-nav-list">
+            <li><a href="#catalogo">Cerrado (Savana)</a></li>
+            <li><a href="#catalogo">Amazônia</a></li>
+            <li><a href="#catalogo">Caatinga</a></li>
+            <li><a href="#catalogo">Mata Atlântica</a></li>
+            <li><a href="#catalogo">Pantanal e Pampa</a></li>
+          </ul>
+        </div>
+
+        <div>
+          <h4 class="footer-heading">Fontes Consultadas</h4>
+          <ul class="footer-nav-list">
+            <li><a href="https://www.embrapa.br" target="_blank" rel="noopener">EMBRAPA Cerrados</a></li>
+            <li><a href="https://www.fiocruz.br" target="_blank" rel="noopener">FIOCRUZ — Plantas Medicinais</a></li>
+            <li><a href="https://www.gov.br/mma" target="_blank" rel="noopener">Ministério do Meio Ambiente</a></li>
+            <li><a href="https://www.anvisa.gov.br" target="_blank" rel="noopener">Farmacopeia Brasileira (ANVISA)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-ethics-note">
+        <strong>Aviso Institucional:</strong> O conteúdo deste acervo possui finalidade estritamente pedagógica, cultural e científica. As informações etnobotânicas registradas não constituem indicação médica nem autorizam o uso de fitoterápicos sem diagnóstico profissional prévio.
+      </div>
+
+      <div class="footer-bottom-bar">
+        <p>&copy; 2026 Raízes do Cerrado • Acervo & Herbário Digital • Feira de Ciências</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Script Principal -->
+  <script src="js/plantsData.js"></script>
+  <script src="assets/anime.min.js"></script>
+  <script src="js/app.js"></script>
+</body>
+</html>

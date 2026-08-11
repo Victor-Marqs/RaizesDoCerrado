@@ -3,7 +3,7 @@
  * Acervo e Herbário Digital — Raízes do Cerrado
  */
 
-const plantsData = [
+export const plantsData = [
   {
     id: "arnica-do-campo",
     code: "ESP-001",

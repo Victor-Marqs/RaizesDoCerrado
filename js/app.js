@@ -1,3 +1,5 @@
+import { plantsData } from './plantsData.js';
+
 /**
  * Raízes do Cerrado - Lógica Principal da Aplicação
  * Acervo e Herbário Digital — Feira de Ciências
@@ -75,7 +77,7 @@ const plantSVGMap = {
   'sucupira_svg': `<svg viewBox="0 0 200 200" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg"><rect width="100%" height="100%" fill="#FAF2E3"/><ellipse cx="100" cy="95" rx="38" ry="52" fill="#C88320" transform="rotate(-15 100 95)"/><path d="M70 70 Q100 90 130 110" stroke="#7D381A" stroke-width="2.5" stroke-linecap="round"/><text x="100" y="170" font-family="Fraunces, serif" font-size="13" font-weight="600" fill="#1B2B22" text-anchor="middle">Pterodon emarginatus</text></svg>`
 };
 
-document.addEventListener('DOMContentLoaded', () => {
+export function initializeLegacyFeatures() {
   initNavbar();
   initBrazilMap();
   initBiomeFilters();
@@ -83,9 +85,8 @@ document.addEventListener('DOMContentLoaded', () => {
   initModals();
   initScannerSimulator();
   renderPlants();
-  initScrollExpansionHero();
   initAnimeMotion();
-});
+}
 
 /* ========================================================================== 
    ANIMAÇÕES EDITORIAIS — ANIME.JS

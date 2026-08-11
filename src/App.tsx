@@ -1,12 +1,15 @@
 import { useEffect, useMemo } from 'react';
 import staticPage from './legacy/static-page.html?raw';
+import { ArchiveMotionSection } from './components/archive-motion-section';
 import { HeroScroll } from './components/hero-scroll';
+import { PrinciplesSection } from './components/principles-section';
 
 type LegacyPage = { header: string; content: string };
 
 function prepareLegacyPage(): LegacyPage {
   const documentFragment = new DOMParser().parseFromString(staticPage, 'text/html');
   documentFragment.querySelector('.hero')?.remove();
+  documentFragment.querySelector('.objectives-section')?.remove();
   documentFragment.querySelectorAll('script').forEach((script) => script.remove());
 
   const header = documentFragment.querySelector('header');
@@ -32,6 +35,8 @@ export default function App() {
     <>
       <div dangerouslySetInnerHTML={{ __html: legacyPage.header }} />
       <HeroScroll />
+      <PrinciplesSection />
+      <ArchiveMotionSection />
       <div dangerouslySetInnerHTML={{ __html: legacyPage.content }} />
     </>
   );

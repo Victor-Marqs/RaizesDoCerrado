@@ -52,7 +52,7 @@ export function ScrollExpansionHero({ mediaSrc, backgroundSrc, children, expande
         <motion.div animate={{ opacity: titleOpacity }} transition={{ duration: 0.12 }} className="pointer-events-none absolute inset-0 z-10">
           {children}
         </motion.div>
-        {expandedContent && <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: expanded ? 1 : 0, y: expanded ? 0 : 18 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }} className="absolute bottom-8 left-1/2 z-20 w-[min(88vw,42rem)] -translate-x-1/2 text-center">{expandedContent}</motion.div>}
+        {expandedContent && <motion.div initial={{ opacity: 0, y: 18 }} animate={{ opacity: expanded ? 1 : 0, y: expanded ? 0 : 18 }} transition={{ duration: 0.45, ease: [0.22, 1, 0.36, 1] }} className="absolute inset-0 z-20 grid place-items-center p-6 text-center"><div className="w-[min(88vw,42rem)]">{expandedContent}</div></motion.div>}
         {!expanded && <p className="absolute bottom-8 left-1/2 z-20 -translate-x-1/2 whitespace-nowrap font-interface text-[.58rem] uppercase tracking-[.18em] text-botanical-accent">Role para revelar</p>}
       </div>
     </section>

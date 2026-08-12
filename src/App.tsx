@@ -3,6 +3,7 @@ import staticPage from './legacy/static-page.html?raw';
 import { ArchiveMotionSection } from './components/archive-motion-section';
 import { HeroScroll } from './components/hero-scroll';
 import { PrinciplesSection } from './components/principles-section';
+import { ScrollingSerpent } from './components/scrolling-serpent';
 
 type LegacyPage = { header: string; content: string };
 
@@ -33,6 +34,7 @@ export default function App() {
 
   return (
     <>
+      <ScrollingSerpent />
       <div dangerouslySetInnerHTML={{ __html: legacyPage.header }} />
       <HeroScroll />
       <PrinciplesSection />

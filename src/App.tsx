@@ -33,7 +33,7 @@ export default function App() {
   }, []);
 
   return (
-    <>
+    <div className="relative">
       <ScrollingSerpent />
       <div className="relative z-10">
         <div dangerouslySetInnerHTML={{ __html: legacyPage.header }} />
@@ -42,6 +42,6 @@ export default function App() {
         <ArchiveMotionSection />
         <div dangerouslySetInnerHTML={{ __html: legacyPage.content }} />
       </div>
-    </>
+    </div>
   );
 }

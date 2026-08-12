@@ -1,25 +1,54 @@
-import { motion, useReducedMotion, useScroll, useTransform } from 'framer-motion';
+import { motion, useMotionValueEvent, useReducedMotion, useScroll } from 'framer-motion';
+import { useEffect, useMemo, useRef, useState } from 'react';
+
+type Point = { x: number; y: number };
 
 export function ScrollingSerpent() {
+  const pathRef = useRef<SVGPathElement>(null);
   const { scrollYProgress } = useScroll();
   const reduceMotion = useReducedMotion();
-  const offsetY = useTransform(scrollYProgress, [0, 0.5, 1], [-90, 18, 110]);
-  const offsetX = useTransform(scrollYProgress, [0, 0.5, 1], [-28, 20, -16]);
+  const [documentHeight, setDocumentHeight] = useState(4800);
+  const [head, setHead] = useState<Point>({ x: 100, y: -100 });
+  const [progress, setProgress] = useState(0);
+
+  useEffect(() => {
+    const updateHeight = () => setDocumentHeight(Math.max(document.documentElement.scrollHeight, window.innerHeight * 5));
+    updateHeight();
+    const observer = new ResizeObserver(updateHeight);
+    observer.observe(document.body);
+    return () => observer.disconnect();
+  }, []);
+
+  const path = useMemo(() => {
+    const h = documentHeight;
+    return `M 120 -150 C 1040 ${h * 0.07}, 1160 ${h * 0.13}, 250 ${h * 0.22} C -80 ${h * 0.29}, 1450 ${h * 0.37}, 1130 ${h * 0.46} C 810 ${h * 0.55}, 40 ${h * 0.61}, 340 ${h * 0.7} C 640 ${h * 0.79}, 1410 ${h * 0.85}, 1110 ${h * 0.94} C 900 ${h * 0.99}, 680 ${h + 180}, 770 ${h + 260}`;
+  }, [documentHeight]);
+
+  useMotionValueEvent(scrollYProgress, 'change', (value) => {
+    const nextProgress = reduceMotion ? 0.08 : Math.max(0, Math.min(1, (value - 0.025) / 0.95));
+    setProgress(nextProgress);
+    const svgPath = pathRef.current;
+    if (!svgPath || nextProgress <= 0.005) return;
+    const point = svgPath.getPointAtLength(svgPath.getTotalLength() * nextProgress);
+    setHead({ x: point.x, y: point.y });
+  });
+
+  const visible = reduceMotion ? 0.12 : progress;
 
   return (
-    <motion.div style={{ x: offsetX, y: offsetY }} className="pointer-events-none fixed inset-0 z-0 overflow-hidden opacity-55" aria-hidden="true">
-      <motion.svg animate={reduceMotion ? undefined : { rotate: [0, 0.35, -0.25, 0] }} transition={{ duration: 5, repeat: Infinity, ease: 'easeInOut' }} viewBox="0 0 1440 960" preserveAspectRatio="none" className="size-full overflow-visible" fill="none">
+    <div className="pointer-events-none absolute inset-0 z-0 overflow-hidden" aria-hidden="true">
+      <svg viewBox={`0 0 1440 ${documentHeight}`} preserveAspectRatio="none" className="size-full overflow-visible" fill="none">
         <defs>
-          <linearGradient id="serpent-background" x1="110" y1="40" x2="1280" y2="900" gradientUnits="userSpaceOnUse"><stop stopColor="#53643d" /><stop offset=".45" stopColor="#c48a2a" /><stop offset="1" stopColor="#8d6c2e" /></linearGradient>
-          <pattern id="serpent-scales" width="18" height="18" patternUnits="userSpaceOnUse"><path d="M0 9C4 2 14 2 18 9M0 18C4 11 14 11 18 18" stroke="#f0ca67" strokeOpacity=".55" strokeWidth="1.2" fill="none" /></pattern>
-          <filter id="serpent-glow" x="-20%" y="-20%" width="140%" height="140%"><feGaussianBlur stdDeviation="3" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
+          <linearGradient id="cerrado-serpent" x1="80" y1="0" x2="1340" y2={documentHeight} gradientUnits="userSpaceOnUse"><stop stopColor="#6f8050" /><stop offset=".42" stopColor="#b6842f" /><stop offset=".72" stopColor="#53643d" /><stop offset="1" stopColor="#9a7130" /></linearGradient>
+          <pattern id="cerrado-scales" width="18" height="18" patternUnits="userSpaceOnUse"><path d="M0 9C4 2 14 2 18 9M0 18C4 11 14 11 18 18" stroke="#f0ca67" strokeOpacity=".62" strokeWidth="1.15" fill="none" /></pattern>
+          <filter id="cerrado-serpent-shadow" x="-20%" y="-10%" width="140%" height="120%"><feGaussianBlur stdDeviation="4" result="blur" /><feMerge><feMergeNode in="blur" /><feMergeNode in="SourceGraphic" /></feMerge></filter>
         </defs>
-        <path d="M720-90C192 72 1190 158 395 315C-38 400 1283 500 848 625C430 744 1120 772 720 1010" stroke="url(#serpent-background)" strokeOpacity=".25" strokeWidth="82" strokeLinecap="round" filter="url(#serpent-glow)" />
-        <path d="M720-90C192 72 1190 158 395 315C-38 400 1283 500 848 625C430 744 1120 772 720 1010" stroke="url(#serpent-background)" strokeWidth="48" strokeLinecap="round" />
-        <path d="M720-90C192 72 1190 158 395 315C-38 400 1283 500 848 625C430 744 1120 772 720 1010" stroke="url(#serpent-scales)" strokeOpacity=".7" strokeWidth="43" strokeLinecap="round" />
-        <path d="M720-90C192 72 1190 158 395 315C-38 400 1283 500 848 625C430 744 1120 772 720 1010" stroke="#f1c65f" strokeOpacity=".34" strokeWidth="3" strokeLinecap="round" />
-        <g transform="translate(720 1010) rotate(90)"><ellipse cx="0" cy="0" rx="32" ry="22" fill="#9e792d" /><path d="M-21-5C-5-21 17-21 29-4M-21 6C-5 22 17 22 29 5" stroke="#f0ca67" strokeOpacity=".55" strokeWidth="1.4" fill="none" /><circle cx="13" cy="-8" r="3.2" fill="#060807" /><circle cx="14" cy="-9" r=".8" fill="#f6df92" /><path d="M28 0l31-9M28 0l31 7" stroke="#e0b14a" strokeWidth="2" strokeLinecap="round" /></g>
-      </motion.svg>
-    </motion.div>
+        <motion.path ref={pathRef} d={path} style={{ pathLength: visible }} stroke="url(#cerrado-serpent)" strokeOpacity=".16" strokeWidth="92" strokeLinecap="round" filter="url(#cerrado-serpent-shadow)" />
+        <motion.path d={path} style={{ pathLength: visible }} stroke="url(#cerrado-serpent)" strokeOpacity=".43" strokeWidth="54" strokeLinecap="round" />
+        <motion.path d={path} style={{ pathLength: visible }} stroke="url(#cerrado-scales)" strokeOpacity=".5" strokeWidth="48" strokeLinecap="round" />
+        <motion.path d={path} style={{ pathLength: visible }} stroke="#efd075" strokeOpacity=".24" strokeWidth="3" strokeLinecap="round" />
+        {visible > 0.005 && <g transform={`translate(${head.x} ${head.y}) rotate(24)`} opacity={Math.min(1, visible * 10)}><ellipse cx="0" cy="0" rx="35" ry="23" fill="#9c7430" /><path d="M-23-6C-5-23 18-23 32-5M-23 7C-5 24 18 24 32 6" stroke="#f0ca67" strokeOpacity=".6" strokeWidth="1.5" fill="none" /><circle cx="14" cy="-9" r="3.4" fill="#060807" /><circle cx="15" cy="-10" r=".85" fill="#f5df91" /><path d="M31 0l31-10M31 0l31 8" stroke="#dcad48" strokeWidth="2" strokeLinecap="round" /></g>}
+      </svg>
+    </div>
   );
 }

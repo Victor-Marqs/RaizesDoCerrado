@@ -35,11 +35,13 @@ export default function App() {
   return (
     <>
       <ScrollingSerpent />
-      <div dangerouslySetInnerHTML={{ __html: legacyPage.header }} />
-      <HeroScroll />
-      <PrinciplesSection />
-      <ArchiveMotionSection />
-      <div dangerouslySetInnerHTML={{ __html: legacyPage.content }} />
+      <div className="relative z-10">
+        <div dangerouslySetInnerHTML={{ __html: legacyPage.header }} />
+        <HeroScroll />
+        <PrinciplesSection />
+        <ArchiveMotionSection />
+        <div dangerouslySetInnerHTML={{ __html: legacyPage.content }} />
+      </div>
     </>
   );
 }

@@ -42,7 +42,7 @@ export function ScrollExpansionHero({ mediaSrc, backgroundSrc, children, expande
   const titleOpacity = Math.max(0, 1 - progress * 2.25);
 
   return (
-    <section className="relative min-h-svh overflow-hidden bg-[#030504] text-botanical-text">
+    <section className="relative min-h-svh overflow-hidden bg-[#030504]/95 text-botanical-text">
       <motion.img animate={{ opacity: 0.27 * (1 - progress) }} transition={{ duration: 0.08 }} src={backgroundSrc} alt="" className="pointer-events-none absolute inset-0 size-full scale-110 object-cover blur-md" />
       <div className="relative flex min-h-svh items-center justify-center px-4 py-24">
         <motion.div animate={{ width, height, borderRadius: 28 * (1 - progress), rotateX: 16 * (1 - progress) }} transition={{ duration: 0.06, ease: 'linear' }} style={{ transformOrigin: 'center bottom' }} className="relative shrink-0 overflow-hidden border border-botanical-accent/50 shadow-[0_28px_80px_rgba(0,0,0,.62)]">

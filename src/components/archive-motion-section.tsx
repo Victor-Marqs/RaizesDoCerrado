@@ -5,7 +5,7 @@ const botanicalImages = ['/assets/arnica-dark.png', '/assets/barbatimao-dark.png
 
 export function ArchiveMotionSection() {
   return (
-    <section className="relative isolate min-h-[48rem] overflow-hidden bg-[#060807] px-6 py-28 text-botanical-text md:px-10 md:py-40">
+    <section className="relative isolate min-h-[48rem] overflow-hidden bg-[#060807]/95 px-6 py-28 text-botanical-text md:px-10 md:py-40">
       <ThreeDMarquee images={botanicalImages} />
       <div className="relative z-10 mx-auto max-w-6xl">
         <motion.div initial={{ opacity: 0, y: 28 }} whileInView={{ opacity: 1, y: 0 }} viewport={{ once: true, amount: 0.25 }} transition={{ duration: 0.7, ease: [0.22, 1, 0.36, 1] }} className="flex min-h-[30rem] flex-col justify-between gap-7 md:flex-row md:items-end">

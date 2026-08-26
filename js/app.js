@@ -55,9 +55,27 @@ const MACRO_REGIONS = [
 const REGION_ARCHIVE = {
   '1': ['guarana', 'copaiba', 'jatoba'],
   '2': ['mangaba', 'carqueja', 'cagaita'],
-  '3': ['arnica-do-campo', 'barbatimao', 'ipe-roxo'],
+  '3': ['arnica-do-campo', 'ipe-roxo', 'jatoba'],
   '4': ['espinheira-santa', 'carqueja', 'ipe-roxo'],
-  '5': ['pequizeiro', 'barbatimao', 'cagaita', 'jatoba', 'sucupira-do-cerrado']
+  '5': ['pequizeiro', 'barbatimao', 'cagaita', 'arnica-do-campo', 'sucupira-do-cerrado']
+};
+
+// Uma espécie pode ocorrer em vários biomas. O acervo a apresenta pelo
+// contexto ecológico da macrorregião selecionada no mapa.
+const REGION_CONTEXT = {
+  '1': { label: 'Amazônia', description: 'Floresta amazônica e saberes da região Norte.' },
+  '2': { label: 'Caatinga', description: 'Caatinga, sertões e zonas de transição do Nordeste.' },
+  '3': { label: 'Mata Atlântica', description: 'Mata Atlântica, serras e campos rupestres do Sudeste.' },
+  '4': { label: 'Pampa e Mata das Araucárias', description: 'Campos sulinos e florestas com araucárias do Sul.' },
+  '5': { label: 'Cerrado e Pantanal', description: 'Savana do Cerrado e paisagens alagáveis do Centro-Oeste.' }
+};
+
+const REGION_SPECIMEN_BIOMES = {
+  '1': { guarana: 'Amazônia', copaiba: 'Amazônia', jatoba: 'Amazônia' },
+  '2': { mangaba: 'Caatinga', carqueja: 'Caatinga', cagaita: 'Caatinga' },
+  '3': { 'arnica-do-campo': 'Mata Atlântica · Campos Rupestres', 'ipe-roxo': 'Mata Atlântica', jatoba: 'Mata Atlântica' },
+  '4': { 'espinheira-santa': 'Mata das Araucárias', carqueja: 'Pampa', 'ipe-roxo': 'Mata Atlântica' },
+  '5': { pequizeiro: 'Cerrado', barbatimao: 'Cerrado', cagaita: 'Cerrado', 'arnica-do-campo': 'Cerrado', 'sucupira-do-cerrado': 'Cerrado e Pantanal' }
 };
 
 // Fotografias editoriais usadas no acervo. As pranchas originais continuam
@@ -375,10 +393,15 @@ function getRegionPlantCount(regionName) {
   return region ? (REGION_ARCHIVE[region.code] || []).length : 0;
 }
 
+function getRegionalBiome(plant, regionCode) {
+  return REGION_SPECIMEN_BIOMES[regionCode]?.[plant.id] || plant.region;
+}
+
 function selectMacroRegion(code) {
   const previousCode = state.currentMacroRegion;
   const normalizedCode = String(code);
   state.currentMacroRegion = state.currentMacroRegion === normalizedCode ? 'Todos' : normalizedCode;
+  state.currentBiome = 'Todos';
   updateRegionInterface();
   animateRegionSelection(previousCode, state.currentMacroRegion);
   initBiomeFilters();
@@ -402,8 +425,9 @@ function updateRegionInterface() {
 function showMapTooltip(event, code, tooltip, mapWrap) {
   if (!tooltip) return;
   const region = getRegionByCode(code);
+  const regionalContext = REGION_CONTEXT[code];
   const bounds = mapWrap.getBoundingClientRect();
-  tooltip.innerHTML = `<strong>${region.name}</strong><span>${getRegionPlantCount(region.name)} espécies no acervo</span>`;
+  tooltip.innerHTML = `<strong>${region.name}</strong><span>${regionalContext.label} · ${getRegionPlantCount(region.name)} espécies</span>`;
   tooltip.style.left = `${event.clientX - bounds.left + 14}px`;
   tooltip.style.top = `${event.clientY - bounds.top + 14}px`;
   tooltip.classList.add('is-visible');
@@ -582,9 +606,10 @@ function renderPlants() {
   setTimeout(() => {
     const featuredIds = REGION_ARCHIVE[selectedRegion.code] || [];
     const filtered = plantsData.filter(plant => featuredIds.includes(plant.id));
+    const regionalContext = REGION_CONTEXT[selectedRegion.code];
 
     if (counter) {
-      counter.textContent = `Exibindo ${filtered.length} ${filtered.length === 1 ? 'espécime documentado' : 'espécimes documentados'}`;
+      counter.textContent = `${selectedRegion.name} · ${regionalContext.label} — ${filtered.length} ${filtered.length === 1 ? 'espécime documentado' : 'espécimes documentados'}`;
     }
 
     if (filtered.length === 0) {
@@ -610,6 +635,7 @@ function renderPlants() {
     }
 
     grid.innerHTML = filtered.map(plant => {
+      const regionalBiome = getRegionalBiome(plant, selectedRegion.code);
       let imageElementHTML = '';
       const editorialPhoto = darkPhotoMap[plant.id];
       if (editorialPhoto) {
@@ -625,7 +651,7 @@ function renderPlants() {
         <div class="specimen-card" data-id="${plant.id}" role="button" tabindex="0" aria-label="Consultar dossiê de ${plant.namePopular}">
           <div class="specimen-img-container">
             ${imageElementHTML}
-            <span class="specimen-tag-bar">${plant.region} · ${plant.family}</span>
+            <span class="specimen-tag-bar">${regionalBiome} · ${plant.family}</span>
           </div>
           <div class="specimen-card-body">
             <div class="specimen-names">

@@ -56,7 +56,7 @@ const REGION_ARCHIVE = {
   '1': ['guarana', 'copaiba'],
   '2': ['mangaba', 'carqueja', 'cagaita'],
   '3': ['ipe-roxo', 'guaco'],
-  '4': ['espinheira-santa', 'carqueja', 'ipe-roxo'],
+  '4': ['espinheira-santa', 'carqueja'],
   '5': ['pequizeiro', 'barbatimao', 'jatoba', 'sucupira-do-cerrado']
 };
 
@@ -74,7 +74,7 @@ const REGION_SPECIMEN_BIOMES = {
   '1': { guarana: 'Amazônia', copaiba: 'Amazônia' },
   '2': { mangaba: 'Caatinga', carqueja: 'Caatinga', cagaita: 'Caatinga' },
   '3': { 'ipe-roxo': 'Mata Atlântica', guaco: 'Mata Atlântica' },
-  '4': { 'espinheira-santa': 'Mata das Araucárias', carqueja: 'Pampa', 'ipe-roxo': 'Mata Atlântica' },
+  '4': { 'espinheira-santa': 'Mata das Araucárias', carqueja: 'Pampa' },
   '5': { pequizeiro: 'Cerrado', barbatimao: 'Cerrado', jatoba: 'Cerrado', 'sucupira-do-cerrado': 'Cerrado e Pantanal' }
 };
 

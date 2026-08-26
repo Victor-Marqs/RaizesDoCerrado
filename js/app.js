@@ -55,9 +55,9 @@ const MACRO_REGIONS = [
 const REGION_ARCHIVE = {
   '1': ['guarana', 'copaiba', 'jatoba'],
   '2': ['mangaba', 'carqueja', 'cagaita'],
-  '3': ['arnica-do-campo', 'ipe-roxo', 'jatoba'],
+  '3': ['ipe-roxo'],
   '4': ['espinheira-santa', 'carqueja', 'ipe-roxo'],
-  '5': ['pequizeiro', 'barbatimao', 'cagaita', 'arnica-do-campo', 'sucupira-do-cerrado']
+  '5': ['pequizeiro', 'barbatimao', 'jatoba', 'sucupira-do-cerrado']
 };
 
 // Uma espécie pode ocorrer em vários biomas. O acervo a apresenta pelo
@@ -73,9 +73,9 @@ const REGION_CONTEXT = {
 const REGION_SPECIMEN_BIOMES = {
   '1': { guarana: 'Amazônia', copaiba: 'Amazônia', jatoba: 'Amazônia' },
   '2': { mangaba: 'Caatinga', carqueja: 'Caatinga', cagaita: 'Caatinga' },
-  '3': { 'arnica-do-campo': 'Mata Atlântica · Campos Rupestres', 'ipe-roxo': 'Mata Atlântica', jatoba: 'Mata Atlântica' },
+  '3': { 'ipe-roxo': 'Mata Atlântica' },
   '4': { 'espinheira-santa': 'Mata das Araucárias', carqueja: 'Pampa', 'ipe-roxo': 'Mata Atlântica' },
-  '5': { pequizeiro: 'Cerrado', barbatimao: 'Cerrado', cagaita: 'Cerrado', 'arnica-do-campo': 'Cerrado', 'sucupira-do-cerrado': 'Cerrado e Pantanal' }
+  '5': { pequizeiro: 'Cerrado', barbatimao: 'Cerrado', jatoba: 'Cerrado', 'sucupira-do-cerrado': 'Cerrado e Pantanal' }
 };
 
 // Fotografias editoriais usadas no acervo. As pranchas originais continuam

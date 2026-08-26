@@ -82,17 +82,17 @@ const REGION_SPECIMEN_BIOMES = {
 // disponíveis dentro dos dossiês como documentação botânica.
 const darkPhotoMap = {
   'arnica-do-campo': 'assets/arnica-dark.png',
-  'barbatimao': 'assets/barbatimao-dark.png',
+  'barbatimao': 'assets/barbatimao-cerrado.png',
   'cagaita': 'assets/cagaita-dark.png',
   'carqueja': 'assets/carqueja-dark.png',
-  'jatoba': 'assets/jatoba-dark.png',
+  'jatoba': 'assets/jatoba-cerrado.png',
   'mangaba': 'assets/mangaba-dark.png',
-  'pequizeiro': 'assets/pequi-dark.png',
+  'pequizeiro': 'assets/pequi-cerrado.png',
   'copaiba': 'assets/copaiba-dark.png',
   'guarana': 'assets/guarana-dark.png',
   'ipe-roxo': 'assets/ipe-roxo-dark.png',
   'espinheira-santa': 'assets/espinheira-santa-dark.png',
-  'sucupira-do-cerrado': 'assets/sucupira-dark.png'
+  'sucupira-do-cerrado': 'assets/sucupira-cerrado.png'
 };
 
 // SVG Ilustrações Botânicas Fallback para plantas com vetor

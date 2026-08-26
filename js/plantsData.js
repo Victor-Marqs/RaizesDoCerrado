@@ -240,7 +240,7 @@ export const plantsData = [
     curiosities: "Ao cortar uma semente de sucupira ao meio, exala-se um aroma perfumado e resinoso imediato dos diterpenos e flavonoides presentes na amêndoa.",
     precautions: "Uso prolongado em doses altas deve ser evitado por indivíduos com problemas renais ou hepáticos.",
     sources: "Universidade Federal de Mato Grosso (UFMT); Rede de Plantas Medicinais do Pantanal.",
-    image: "assets/sucupira_svg",
+    image: "assets/sucupira-cerrado.png",
     conservationStatus: "Pouco Preocupante",
     partUsed: "Sementes e frutos"
   }

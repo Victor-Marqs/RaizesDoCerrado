@@ -243,6 +243,26 @@ export const plantsData = [
     image: "assets/sucupira-cerrado.png",
     conservationStatus: "Pouco Preocupante",
     partUsed: "Sementes e frutos"
+  },
+  {
+    id: "guaco",
+    code: "ESP-013",
+    namePopular: "Guaco",
+    nameScientific: "Mikania glomerata",
+    family: "Asteraceae",
+    region: "Mata Atlântica",
+    macroRegions: ["Sudeste", "Sul"],
+    regionsSecondary: ["Cerrado"],
+    shortDesc: "Trepadeira nativa da Mata Atlântica, de aroma característico, muito presente em quintais e na tradição fitoterápica brasileira.",
+    characteristics: "Trepadeira lenhosa de ramos flexíveis, folhas verdes de formato triangular a cordiforme e pequenas inflorescências claras agrupadas nos ramos.",
+    occurrence: "No Brasil, ocorre principalmente nas regiões Sul e Sudeste, em áreas de Mata Atlântica, bordas de mata, capoeiras e ambientes úmidos.",
+    traditionalUse: "As folhas são tradicionalmente empregadas em preparações para sintomas respiratórios. O uso fitoterápico deve seguir formulações padronizadas e orientação profissional.",
+    curiosities: "O guaco integra a relação de fitoterápicos ofertados no SUS e é uma das plantas medicinais mais conhecidas da Mata Atlântica.",
+    precautions: "Evite a automedicação. Crianças, gestantes, lactantes e pessoas que usam medicamentos devem buscar orientação de profissional de saúde antes do uso medicinal.",
+    sources: "Ministério da Saúde — Monografia Mikania glomerata (Guaco); Relação Nacional de Plantas Medicinais de Interesse ao SUS.",
+    image: "assets/guaco-commons.jpg",
+    conservationStatus: "Monitoramento recomendado no acervo",
+    partUsed: "Folhas"
   }
 ];
 

@@ -53,9 +53,9 @@ const MACRO_REGIONS = [
 // espécies associadas editorialmente àquela região — não toda a área de
 // ocorrência geográfica da planta.
 const REGION_ARCHIVE = {
-  '1': ['guarana', 'copaiba', 'jatoba'],
+  '1': ['guarana', 'copaiba'],
   '2': ['mangaba', 'carqueja', 'cagaita'],
-  '3': ['ipe-roxo'],
+  '3': ['ipe-roxo', 'guaco'],
   '4': ['espinheira-santa', 'carqueja', 'ipe-roxo'],
   '5': ['pequizeiro', 'barbatimao', 'jatoba', 'sucupira-do-cerrado']
 };
@@ -71,9 +71,9 @@ const REGION_CONTEXT = {
 };
 
 const REGION_SPECIMEN_BIOMES = {
-  '1': { guarana: 'Amazônia', copaiba: 'Amazônia', jatoba: 'Amazônia' },
+  '1': { guarana: 'Amazônia', copaiba: 'Amazônia' },
   '2': { mangaba: 'Caatinga', carqueja: 'Caatinga', cagaita: 'Caatinga' },
-  '3': { 'ipe-roxo': 'Mata Atlântica' },
+  '3': { 'ipe-roxo': 'Mata Atlântica', guaco: 'Mata Atlântica' },
   '4': { 'espinheira-santa': 'Mata das Araucárias', carqueja: 'Pampa', 'ipe-roxo': 'Mata Atlântica' },
   '5': { pequizeiro: 'Cerrado', barbatimao: 'Cerrado', jatoba: 'Cerrado', 'sucupira-do-cerrado': 'Cerrado e Pantanal' }
 };
@@ -83,16 +83,33 @@ const REGION_SPECIMEN_BIOMES = {
 const darkPhotoMap = {
   'arnica-do-campo': 'assets/arnica-dark.png',
   'barbatimao': 'assets/barbatimao-cerrado.png',
-  'cagaita': 'assets/cagaita-dark.png',
-  'carqueja': 'assets/carqueja-dark.png',
+  'cagaita': 'assets/cagaita-commons.jpg',
+  'carqueja': 'assets/carqueja-commons.jpg',
   'jatoba': 'assets/jatoba-cerrado.png',
-  'mangaba': 'assets/mangaba-dark.png',
+  'mangaba': 'assets/mangaba-commons.jpg',
   'pequizeiro': 'assets/pequi-cerrado.png',
-  'copaiba': 'assets/copaiba-dark.png',
-  'guarana': 'assets/guarana-dark.png',
-  'ipe-roxo': 'assets/ipe-roxo-dark.png',
-  'espinheira-santa': 'assets/espinheira-santa-dark.png',
-  'sucupira-do-cerrado': 'assets/sucupira-cerrado.png'
+  'copaiba': 'assets/copaiba-commons.jpg',
+  'guarana': 'assets/guarana-commons.jpg',
+  'ipe-roxo': 'assets/ipe-roxo-commons.jpg',
+  'espinheira-santa': 'assets/espinheira-santa-commons.jpg',
+  'sucupira-do-cerrado': 'assets/sucupira-cerrado.png',
+  'guaco': 'assets/guaco-commons.jpg'
+};
+
+// Créditos das fotografias de licença aberta incorporadas ao acervo.
+const IMAGE_CREDITS = {
+  'barbatimao': { label: 'Imagem fornecida pelo acervo do projeto' },
+  'cagaita': { label: 'João Medeiros / Wikimedia Commons · CC BY 2.0', url: 'https://commons.wikimedia.org/wiki/File:Eugenia_dysenterica.jpg' },
+  'carqueja': { label: 'Mateus Hidalgo / Wikimedia Commons · CC BY-SA 2.5 BR', url: 'https://commons.wikimedia.org/wiki/File:Baccharis_trimera.jpg' },
+  'jatoba': { label: 'Imagem fornecida pelo acervo do projeto' },
+  'mangaba': { label: 'João Medeiros / Wikimedia Commons · CC BY 2.0', url: 'https://commons.wikimedia.org/wiki/File:Hancornia_speciosa.jpg' },
+  'pequizeiro': { label: 'Imagem fornecida pelo acervo do projeto' },
+  'copaiba': { label: 'Mauroguanandi / Wikimedia Commons · domínio público', url: 'https://commons.wikimedia.org/wiki/File:Copaicaaclimacao.JPG' },
+  'guarana': { label: 'Wikimedia Commons · CC BY-SA 3.0', url: 'https://commons.wikimedia.org/wiki/File:Guarana_-_Paullinia_cupana.jpg' },
+  'ipe-roxo': { label: 'Giles Laurent / Wikimedia Commons · CC BY-SA 4.0', url: 'https://commons.wikimedia.org/wiki/File:055_Pink_Ip%C3%AA_tree_in_Mato_Grosso_Photo_by_Giles_Laurent.jpg' },
+  'espinheira-santa': { label: 'Uruguayan Barcode of Life Initiative / Wikimedia Commons · CC BY 4.0', url: 'https://commons.wikimedia.org/wiki/File:Monteverdia_ilicifolia-CA43MVFA-FAGRO-UDELAR.jpg' },
+  'sucupira-do-cerrado': { label: 'Imagem fornecida pelo acervo do projeto' },
+  'guaco': { label: 'Hall 9001 / Wikimedia Commons · CC BY-SA 3.0', url: 'https://commons.wikimedia.org/wiki/File:Flor_de_Guaco.jpg' }
 };
 
 // SVG Ilustrações Botânicas Fallback para plantas com vetor
@@ -718,10 +735,17 @@ function openPlantModal(plantId) {
   if (!modalOverlay || !modalBody) return;
 
   let heroImageHTML = '';
-  if (plant.image.endsWith('.png')) {
-    heroImageHTML = `<img src="${plant.image}" alt="${plant.namePopular}" class="dossier-img" />`;
+  const dossierImage = darkPhotoMap[plant.id] || plant.image;
+  const imageCredit = IMAGE_CREDITS[plant.id];
+  const imageCreditHTML = imageCredit
+    ? `<figcaption class="dossier-image-credit">Imagem: ${imageCredit.url
+      ? `<a href="${imageCredit.url}" target="_blank" rel="noreferrer">${imageCredit.label}</a>`
+      : imageCredit.label}</figcaption>`
+    : '';
+  if (/\.(png|jpe?g|webp)$/i.test(dossierImage)) {
+    heroImageHTML = `<figure class="dossier-image-figure"><img src="${dossierImage}" alt="${plant.namePopular}" class="dossier-img" />${imageCreditHTML}</figure>`;
   } else {
-    const svgKey = plant.image.split('/')[1];
+    const svgKey = dossierImage.split('/')[1];
     heroImageHTML = `<div style="height:340px;width:100%">${plantSVGMap[svgKey] || ''}</div>`;
   }
 

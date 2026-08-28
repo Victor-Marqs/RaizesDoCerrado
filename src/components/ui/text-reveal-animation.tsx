@@ -8,7 +8,7 @@ type TextRevealProps = {
 
 export function TextReveal({ text, className = '', delay = 0 }: TextRevealProps) {
   return (
-    <span aria-label={text} className={`inline-block overflow-hidden ${className}`}>
+    <span aria-label={text} className={`-mb-[0.16em] inline-block overflow-hidden pb-[0.16em] ${className}`}>
       {Array.from(text).map((character, index) => (
         <motion.span
           aria-hidden="true"
